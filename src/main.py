@@ -4,7 +4,7 @@ from models import ASCII_Art
 
 ascii_api = FastAPI()
 
-art_dict = []
+ascii_art = []
 
 
 @ascii_api.get("/")
@@ -14,12 +14,13 @@ async def root():
 
 @ascii_api.get("/art")
 async def get_art():
-    return art_dict
+    return { "ascii_art": ascii_art}
 
 @ascii_api.post("/art")
-async def add_art():
+async def add_art(art: ASCII_Art):
+    ascii_art.append(art)
     return {"message": "Art added successfully"}
 
 @ascii_api.get("/art/{art_id}", response_class=PlainTextResponse)
 async def read_art(art_id: str) -> str:
-    return art_dict[art_id]
+    return ascii_art[art_id]
