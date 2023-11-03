@@ -8,9 +8,9 @@ ascii_api = FastAPI()
 
 r = redis.Redis(host='localhost', port=6379, decode_responses=True)
 
-@ascii_api.get("/")
+@ascii_api.get("/healthcheck")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": "healthy"}
 
 @ascii_api.get("/art")
 async def get_art() -> dict:
