@@ -2,11 +2,12 @@ from fastapi import FastAPI
 from fastapi.responses import PlainTextResponse
 import redis
 import base64
-from models import ASCII_Art
+from .models import ASCII_Art
+from .config import settings
 
-ascii_api = FastAPI()
+ascii_api = FastAPI(title=settings.app_name)
 
-r = redis.Redis(host="localhost", port=6379, decode_responses=True)
+r = redis.Redis(host=settings.db_host, port=settings.db_port, decode_responses=True)
 
 
 @ascii_api.get("/healthcheck")

@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 from unittest.mock import patch, Mock
-from main import ascii_api
+from src.main import ascii_api
 
 client = TestClient(ascii_api)
 
@@ -11,7 +11,7 @@ def test_healthcheck():
     assert response.json() == {"message": "healthy"}
 
 
-@patch("main.r", autospec=True)
+@patch("src.main.r", autospec=True)
 def test_add_art(mock_redis):
     mock_redis.hset.return_value = 1
 
@@ -28,7 +28,7 @@ def test_add_art(mock_redis):
     assert response.json() == {"message": "ASCII art monster added"}
 
 
-@patch("main.r", autospec=True)
+@patch("src.main.r", autospec=True)
 def test_read_art(mock_redis):
     mock_redis.hget.return_value = "2akozL7il4/MrsyuzIPMvuKAosyDzL4p27Y="
 
