@@ -4,10 +4,9 @@ import redis
 import base64
 from .models import ASCII_Art
 from .config import settings
+from .db.redis import r
 
 ascii_api = FastAPI(title=settings.app_name)
-
-r = redis.Redis(host=settings.db_host, port=settings.db_port, decode_responses=True)
 
 
 @ascii_api.get("/healthcheck")

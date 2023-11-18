@@ -5,7 +5,7 @@ A Python project to improve my experience with writing API's and experiment with
 ## Commands
 ### Run the API
 ```bash
-uvicorn main:ascii_api --reload
+uvicorn src.main:ascii_api --reload
 ```
 
 ### Start a redis container locally
